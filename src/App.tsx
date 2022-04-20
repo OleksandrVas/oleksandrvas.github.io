@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TicketList from "./Components/TicketList/TicketList";
+import Board from "./Components/Board/Board";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Props {
+    todo: any,
+    users: any,
+    setInProgress : any,
+    setDone: any
 }
+
+const App: React.FC<Props> = ({todo ,users ,setDone ,setInProgress}) => {
+    return (
+        <>
+            <TicketList todo={todo} setDone={setDone} setInProgress={setInProgress}/>
+            <Board  todo={todo} setDone={setDone} setInProgress={setInProgress} />
+        </>
+    );
+};
 
 export default App;
