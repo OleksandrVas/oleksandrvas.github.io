@@ -1,26 +1,32 @@
 import React from 'react';
-// @ts-ignore
-import cl from "./TicketList.module.css"
+import "../../Styles/TicketList.scss"
 import {mapTicketFunc} from "./mapTicketWithProgress";
 
 interface Props {
     todo: any,
+    users: any,
     setInProgress: any,
-    setDone: any
+    setUserAvatar:any,
+    setDone: any,
+    getLetterOfNameAndSecondName: any
 }
 
 
-const TicketList: React.FC<Props> = ({todo, setInProgress, setDone}) => {
+const TicketList: React.FC<Props> = ({todo, getLetterOfNameAndSecondName,setUserAvatar, users, setInProgress, setDone}) => {
 
+    if (users.loadingUsers) {
+        return <div>Wait</div>
+    }
 
     return (
-        <div className={cl.list}>
-            <h1>Ticket List </h1>
-            <div>
-                {todo.todo.length != 0 ? mapTicketFunc(todo.todo, todo.status[0], setInProgress) :
+        <div className="ticketListContainer">
+            <h1 className="ticketTitle"> Ticket List </h1>
+            <div className="ticketListItems">
+                {todo.todo.length != 0 ? mapTicketFunc(todo.todo, todo.status[0], setInProgress, getLetterOfNameAndSecondName, users ,setUserAvatar ) :
                     <div>All {todo.status[0]} is done </div>}
-                {todo.inProgress.length != 0 ? mapTicketFunc(todo.inProgress, todo.status[1], setDone) : ""}
-                {todo.done.length != 0 ? mapTicketFunc(todo.done, todo.status[2], null) : ""}
+
+                {todo.inProgress.length != 0 ? mapTicketFunc(todo.inProgress, todo.status[1], setDone, getLetterOfNameAndSecondName, users ,setUserAvatar) : ""}
+                {todo.done.length != 0 ? mapTicketFunc(todo.done, todo.status[2], null, getLetterOfNameAndSecondName, users ,setUserAvatar) : ""}
 
             </div>
         </div>

@@ -1,6 +1,7 @@
 export interface UserState {
     users: any[],
-    loading: boolean,
+    userAvatar: any[],
+    loadingUsers: boolean,
     error: string,
 }
 
@@ -9,6 +10,7 @@ export enum UserActionType {
     FETCH_USERS = "FETCH_USERS",
     FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS",
     FETCH_USERS_ERROR = "FETCH_USERS_ERROR",
+    SET_USER_AVATAR = "SET_USER_AVATAR"
 }
 
 interface FetchUser {
@@ -25,5 +27,10 @@ interface FetchUserError {
     payload: string
 }
 
+interface SetUserAvatar {
+    type: UserActionType.SET_USER_AVATAR,
+    payload: any
+}
 
-export type UserAction = FetchUser | FetchUserError | FetchUserSuccess
+
+export type UserAction = FetchUser | FetchUserError | FetchUserSuccess | SetUserAvatar
