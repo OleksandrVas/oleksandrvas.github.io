@@ -14,7 +14,7 @@ interface Props {
 const App: React.FC<Props> = ({dispatch , statusOfProgress,checkProgressStatus, todoState ,userState }) => {
     return (
         <div className="appContainer">
-            <TicketList dispatch={dispatch} todoState={todoState} userState={userState} />
+            <TicketList dispatch={dispatch} checkProgressStatus={checkProgressStatus} statusOfProgress={statusOfProgress} todoState={todoState} userState={userState} />
             <Board checkProgressStatus={checkProgressStatus} statusOfProgress={statusOfProgress} dispatch={dispatch} todoState={todoState} userState={userState}/>
         </div>
     );

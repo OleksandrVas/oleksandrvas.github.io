@@ -1,54 +1,37 @@
 import React from 'react';
 import "../../Styles/TicketList.scss"
-import {mapTicketFunc} from "./mapTicketWithProgress";
-import {setDone, setInProgress} from "../../store/reducers/todoReducer";
+import {mapTicketList} from "./mapTicketWithProgress";
 
 interface Props {
     dispatch: any,
     todoState: any,
     userState: any,
+    statusOfProgress: any,
+    checkProgressStatus: any,
 }
 
 
-const TicketList: React.FC<Props> = ({dispatch, todoState, userState}) => {
+const TicketList: React.FC<Props> = ({dispatch, statusOfProgress, checkProgressStatus, todoState, userState}) => {
 
 
     if (userState.loadingUsers) {
         return <div>Wait</div>
     }
-
     return (
         <div className="ticketListContainer">
             <h1 className="ticketTitle"> Ticket List </h1>
             <div className="ticketListItems">
-                {todoState.todo.length != 0 ?
-                    mapTicketFunc(todoState.todo,
-                        todoState.status[0],
+                {todoState.status.map((status: any, index: any) => (
+                    mapTicketList(
+                        statusOfProgress(status, todoState),
+                        status,
                         userState.users,
-                        true,
+                        index !== 2,
                         userState.userAvatar,
-                        setInProgress,
+                        checkProgressStatus(status),
                         dispatch
                     )
-                    : ""}
-                {todoState.inProgress.length != 0 ?
-                    mapTicketFunc(todoState.inProgress,
-                        todoState.status[1],
-                        userState.users,
-                        true,
-                        userState.userAvatar,
-                        setDone,
-                        dispatch)
-                    : ""}
-                {todoState.done.length != 0 ?
-                    mapTicketFunc(todoState.done,
-                        todoState.status[2],
-                        userState.users,
-                        null,
-                        userState.userAvatar,
-                        null,
-                        dispatch)
-                    : ""}
+                ))}
 
             </div>
         </div>

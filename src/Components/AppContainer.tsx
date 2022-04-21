@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import App from "../App";
 import {useDispatch} from "react-redux";
 import {fetchTodos} from "../store/action-creators/todo";
 import {fetchUsers, setUserAvatar} from "../store/reducers/userReducer";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {color} from "./getColor";
-import {setDone, setInProgress} from "../store/reducers/todoReducer";
 import {checkProgressStatus, statusOfProgress} from "./checkProgressStatus";
 
 

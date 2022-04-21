@@ -1,11 +1,9 @@
 import {Avatar} from '@mui/material';
-import React, {useEffect} from 'react';
+import React from 'react';
 import "../../Styles/TicketList.scss"
 import Button from "../UI/Button";
-import {setUserAvatar} from "../../store/reducers/userReducer";
-import {useDispatch} from "react-redux";
 import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
-import {color} from "../getColor";
+
 
 interface Props {
     text: string,
@@ -30,6 +28,7 @@ const TicketListItem: React.FC<Props> = ({
                                              dispatch,
                                          }) => {
 
+
     if (userAvatar.length <= 1) {
         return <div>wait</div>
     }
@@ -46,10 +45,11 @@ const TicketListItem: React.FC<Props> = ({
             </div>
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">
-                <Button children={status} onHandleClick={inProgress != null ?
-                    () => dispatch(progress({id: id, setTicket: {id: id, title: text}}))
-                    : null
-                }/>
+                <Button children={status}
+                        onHandleClick={inProgress === true  ?
+                            () => dispatch(progress({id: id, setTicket: {id: id, title: text}}))
+                            : null
+                        }/>
             </div>
         </div>
     );

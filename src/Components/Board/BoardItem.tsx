@@ -3,32 +3,29 @@ import {Avatar} from "@mui/material";
 import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
 
 interface Props {
-    text: string,
-    id: number,
+    text: any,
+    id: any,
     userAvatar: any,
     setProgress: any,
-    name: string,
-    dispatch:any
+    name: any,
+
 }
 
 const BoardItem: React.FC<Props> = ({
-                                        text = "empty",
+                                        text ,
                                         userAvatar,
                                         id,
-                                        name = "User",
+                                        name ,
                                         setProgress,
-                                        dispatch
                                     }) => {
-
-
-
-    if (userAvatar.length <1) {
+    if (userAvatar.length < 1) {
         return <div>Wait</div>
     }
     return (
-        <div onClick={() => dispatch(setProgress({id: id, setTicket: {id: id, title: text}}))}
+
+        <div onClick={setProgress}
              className="boardItem">
-            <div className="boardItemAvatar" >
+            <div className="boardItemAvatar">
                 <Avatar sx={{
                     bgcolor: (userAvatar[id - 1].color),
                     padding: "25px"
@@ -36,8 +33,7 @@ const BoardItem: React.FC<Props> = ({
                     {getLetterOfNameAndSecondName(name)}
                 </Avatar>
             </div>
-
-            <div className="boardItemText" >{text}</div>
+            <div className="boardItemText">{text}</div>
         </div>
     );
 };

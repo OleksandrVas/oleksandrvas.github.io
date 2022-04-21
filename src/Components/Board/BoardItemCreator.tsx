@@ -7,25 +7,27 @@ interface Props {
     setProgress: any
     status: any,
     inProgress: any,
-    dispatch: any
+    dispatch: any,
+    isProgress: any
 }
 
 const BoardItemCreator: React.FC<Props> = ({
+                                               isProgress,
                                                userState,
                                                dispatch,
                                                inProgress,
                                                status,
                                                setProgress
                                            }) => {
-
     return (
         <div className="boardItemCreator">
             <h3 className="boardItemStatus">{status}</h3>
             {inProgress.length != 0 ? inProgress.map((item: any) => (
                 <BoardItem name={userState.users[item.id - 1].name}
                            userAvatar={userState.userAvatar}
-                           dispatch={dispatch}
-                           setProgress={setProgress}
+                           setProgress={isProgress === true  ?
+                               () => dispatch(setProgress({id: item.id, setTicket: {id: item.id, title: item.title}}))
+                               : null }
                            key={item.id}
                            text={item.title}
                            id={item.id}/>
