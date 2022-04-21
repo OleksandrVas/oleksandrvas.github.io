@@ -2,12 +2,12 @@ import TicketListItem from "./TicketListItem";
 import React from "react";
 
 
-export const mapTicketFunc = (todoProgress: any, status: any, setProgress: any , getLetterOfNameAndSecondName : any ,users: any ,setUserAvatar : any)  => {
+export const mapTicketFunc = (todoProgress: any, status: any,  users: any , inProgress:any , userAvatar:any , progress:any)  => {
     return todoProgress.map((item: any) => <TicketListItem key={item.id}
-                                                           setUserAvatar={setUserAvatar}
-                                                           getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                                                            id={item.id}
+                                                           progress={progress}
+                                                           userAvatar={userAvatar}
                                                            users={users }
-                                                           setProgress={setProgress}
+                                                           inProgress={inProgress}
                                                            text={item.title} status={status}/>)
 }

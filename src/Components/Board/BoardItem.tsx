@@ -2,32 +2,37 @@ import React from 'react';
 // @ts-ignore
 import cl from "./Board.module.css"
 import {Avatar} from "@mui/material";
+import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
+import {useDispatch} from "react-redux";
 
 interface Props {
     text: string,
     id: number,
-    users: any,
+    userAvatar: any,
     setProgress: any,
     name: string,
-    getLetterOfNameAndSecondName: any
 }
 
 const BoardItem: React.FC<Props> = ({
                                         text = "empty",
-                                        users,
-                                        getLetterOfNameAndSecondName,
+                                        userAvatar,
                                         id,
                                         name = "User",
                                         setProgress
                                     }) => {
-    if (users.userAvatar.length === 0) {
+
+
+    const dispatch = useDispatch()
+
+    if (userAvatar.length === 0) {
         return <div>Wait</div>
     }
     return (
-        <div onClick={() => setProgress({id: id, setTicket: {id: id, title: text}})} className={cl.boardItem}>
+        <div onClick={() => dispatch<any>(setProgress({id: id, setTicket: {id: id, title: text}}))}
+             className={cl.boardItem}>
             <div className={cl.user}>
                 <Avatar sx={{
-                    bgcolor: users.userAvatar[id - 1].color,
+                    bgcolor: userAvatar[id - 1].color,
                     padding: "25px"
                 }}>
                     {getLetterOfNameAndSecondName(name)}

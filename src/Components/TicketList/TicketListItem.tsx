@@ -2,57 +2,60 @@ import {Avatar} from '@mui/material';
 import React, {useEffect} from 'react';
 import "../../Styles/TicketList.scss"
 import Button from "../UI/Button";
-import {deepOrange, deepPurple} from "@mui/material/colors";
 import {setUserAvatar} from "../../store/reducers/userReducer";
+import {useDispatch} from "react-redux";
+import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
+import {color} from "../getColor";
 
 interface Props {
     text: string,
     status: string,
-    setProgress: any,
+    inProgress: any
+    userAvatar: any,
+    progress: any,
     users: any,
     id: number,
-    setUserAvatar: any,
-    getLetterOfNameAndSecondName: any
 }
 
 
 const TicketListItem: React.FC<Props> = ({
+                                             userAvatar,
                                              text,
-                                             setUserAvatar,
-                                             getLetterOfNameAndSecondName,
                                              status,
+                                             progress,
                                              users,
-                                             setProgress,
-                                             id
+                                             id,
+                                             inProgress
                                          }) => {
 
-
-    const color = function generateColor() {
-        return '#' + Math.floor(Math.random() * 16777215).toString(16)
-    }
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setUserAvatar({color: color()})
+        dispatch<any>(setUserAvatar({color: color()}))
     }, [])
 
-    if (users.userAvatar.length === 0) {
+
+    console.log()
+    if (userAvatar.length === 0) {
         return <div>wait</div>
     }
+
     return (
         <div className="listItem">
             <div className="col-xs-3">
                 <Avatar sx={{
-                    bgcolor: users.userAvatar[id - 1].color ,
+                    bgcolor: userAvatar[id - 1].color,
                     padding: "25px"
                 }}>
-                    {getLetterOfNameAndSecondName(users.users[id - 1].name)}
+                    {getLetterOfNameAndSecondName(users[id - 1].name)}
                 </Avatar>
             </div>
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">
-                <Button children={status} onHandleClick={setProgress != null ?
-                    () => setProgress({id: id, setTicket: {id: id, title: text}})
-                    : () => null}/>
+                <Button children={status} onHandleClick={inProgress != null ?
+                    () => dispatch<any>(progress({id: id, setTicket: {id: id, title: text}}))
+                    : null
+                }/>
             </div>
 
 

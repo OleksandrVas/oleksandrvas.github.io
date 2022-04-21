@@ -6,23 +6,22 @@ import cl from "./Board.module.css"
 
 
 interface Props {
-    todo: any,
     users: any,
     setProgress:any
-    getLetterOfNameAndSecondName: any,
-    status: number,
+    status: any,
     inProgress: any
+    userAvatar:any,
+    statusNumber:number
 }
 
-const BoardItemCreator: React.FC<Props> = ({todo, users, inProgress, status,setProgress, getLetterOfNameAndSecondName}) => {
+const BoardItemCreator: React.FC<Props> = ({ users, userAvatar,inProgress, status,statusNumber,setProgress}) => {
     return (
         <div className={cl.boardItemContainer}>
-            <h3>{todo.status[status]}</h3>
+            <h3>{status[statusNumber]}</h3>
             {inProgress.length != 0 ? inProgress.map((item: any) => (
-                <BoardItem name={users.users[item.id - 1].name}
-                           users={users}
+                <BoardItem name={users[item.id - 1].name}
+                           userAvatar={userAvatar}
                            setProgress = {setProgress}
-                           getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                            key={item.id}
                            text={item.title}
                            id={item.id}/>

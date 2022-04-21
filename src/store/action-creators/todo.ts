@@ -8,10 +8,15 @@ export const fetchTodos = () => {
         try {
             dispatch({type: TodoActionTypes.FETCH_TODOS})
             const response = await axios.get("https://jsonplaceholder.typicode.com/todos?_page=1")
-                .then(resp => resp.data)
-            dispatch({type: TodoActionTypes.FETCH_TODOS_SUCCESS, payload: response})
+            dispatch({
+                type: TodoActionTypes.FETCH_TODOS_SUCCESS,
+                payload: response.data
+            })
         } catch (e) {
-            dispatch({type: TodoActionTypes.FETCH_TODOS_ERROR, payload: "Произошла ошибка"})
+            dispatch({
+                type: TodoActionTypes.FETCH_TODOS_ERROR,
+                payload: "Произошла ошибка"
+            })
         }
     }
 }

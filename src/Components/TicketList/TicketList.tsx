@@ -1,20 +1,19 @@
 import React from 'react';
 import "../../Styles/TicketList.scss"
 import {mapTicketFunc} from "./mapTicketWithProgress";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {setDone, setInProgress} from "../../store/reducers/todoReducer";
 
 interface Props {
-    todo: any,
-    users: any,
-    setInProgress: any,
-    setUserAvatar:any,
-    setDone: any,
-    getLetterOfNameAndSecondName: any
 }
 
 
-const TicketList: React.FC<Props> = ({todo, getLetterOfNameAndSecondName,setUserAvatar, users, setInProgress, setDone}) => {
+const TicketList: React.FC<Props> = ({}) => {
+    const {status, todo, inProgress, done } = useTypedSelector(state => state.todo)
+    const {loadingUsers, userAvatar , users} = useTypedSelector(state => state.users)
 
-    if (users.loadingUsers) {
+
+    if (loadingUsers) {
         return <div>Wait</div>
     }
 
@@ -22,11 +21,16 @@ const TicketList: React.FC<Props> = ({todo, getLetterOfNameAndSecondName,setUser
         <div className="ticketListContainer">
             <h1 className="ticketTitle"> Ticket List </h1>
             <div className="ticketListItems">
-                {todo.todo.length != 0 ? mapTicketFunc(todo.todo, todo.status[0], setInProgress, getLetterOfNameAndSecondName, users ,setUserAvatar ) :
-                    <div>All {todo.status[0]} is done </div>}
+                {todo.length != 0 ?
+                    mapTicketFunc(todo, status[0], users, true, userAvatar ,setInProgress)
+                    : <div>All {status[0]} {status[1]} </div>}
 
-                {todo.inProgress.length != 0 ? mapTicketFunc(todo.inProgress, todo.status[1], setDone, getLetterOfNameAndSecondName, users ,setUserAvatar) : ""}
-                {todo.done.length != 0 ? mapTicketFunc(todo.done, todo.status[2], null, getLetterOfNameAndSecondName, users ,setUserAvatar) : ""}
+                {inProgress.length != 0 ?
+                    mapTicketFunc(inProgress, status[1], users, true, userAvatar , setDone)
+                    : ""}
+                {done.length != 0 ?
+                    mapTicketFunc(done, status[2], users, "", userAvatar , null)
+                    : ""}
 
             </div>
         </div>
