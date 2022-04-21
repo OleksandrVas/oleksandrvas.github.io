@@ -15,6 +15,7 @@ interface Props {
     progress: any,
     users: any,
     id: number,
+    dispatch: any
 }
 
 
@@ -25,18 +26,11 @@ const TicketListItem: React.FC<Props> = ({
                                              progress,
                                              users,
                                              id,
-                                             inProgress
+                                             inProgress,
+                                             dispatch,
                                          }) => {
 
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch<any>(setUserAvatar({color: color()}))
-    }, [])
-
-
-    console.log()
-    if (userAvatar.length === 0) {
+    if (userAvatar.length <= 1) {
         return <div>wait</div>
     }
 
@@ -44,7 +38,7 @@ const TicketListItem: React.FC<Props> = ({
         <div className="listItem">
             <div className="col-xs-3">
                 <Avatar sx={{
-                    bgcolor: userAvatar[id - 1].color,
+                    bgcolor: (userAvatar[id - 1].color || "black"),
                     padding: "25px"
                 }}>
                     {getLetterOfNameAndSecondName(users[id - 1].name)}
@@ -53,12 +47,10 @@ const TicketListItem: React.FC<Props> = ({
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">
                 <Button children={status} onHandleClick={inProgress != null ?
-                    () => dispatch<any>(progress({id: id, setTicket: {id: id, title: text}}))
+                    () => dispatch(progress({id: id, setTicket: {id: id, title: text}}))
                     : null
                 }/>
             </div>
-
-
         </div>
     );
 };

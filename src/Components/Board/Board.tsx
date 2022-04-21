@@ -1,49 +1,40 @@
 import React from 'react';
-// @ts-ignore
-import cl from "./Board.module.css"
+import "../../Styles/Board.scss"
 import BoardItemCreator from "./BoardItemCreator";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {setDone, setInProgress} from "../../store/reducers/todoReducer";
+import {log} from "util";
 
 
 interface Props {
-
+    dispatch: any,
+    todoState: any,
+    userState: any,
+    statusOfProgress: any,
+    checkProgressStatus: any,
 }
 
-const Board: React.FC<Props> = ({}) => {
-    const {status, inProgress, todo, done} = useTypedSelector(state => state.todo)
-    const {userAvatar, users, loadingUsers} = useTypedSelector(state => state.users)
+const Board: React.FC<Props> = ({dispatch, statusOfProgress, todoState, checkProgressStatus, userState}) => {
 
-    if (loadingUsers) {
+    if (userState.loadingUsers) {
         return <div>Wait</div>
     }
 
     return (
-        <>
-            <h1>Board</h1>
+        <div className="boardContainer">
+            <h1 className="boardTitle">Board</h1>
+            <div className="boardItemContainer">
 
-            <div className={cl.boardContainer}>
-                <BoardItemCreator
-                    setProgress={setInProgress}
-                    statusNumber={0}
-                    userAvatar={userAvatar}
-                    users={users}
-                    status={status} inProgress={todo}/>
-                <BoardItemCreator
-                    users={users}
-                    userAvatar={userAvatar}
-                    statusNumber={1}
-                    setProgress={setDone}
-                    status={status} inProgress={inProgress}/>
+                {todoState.status.map((status: any) => (
+                    <BoardItemCreator userState={userState}
+                                      key={Math.random()}
+                                      setProgress={checkProgressStatus(status)}
+                                      inProgress={statusOfProgress(status, todoState)}
+                                      status={status}
+                                      dispatch={dispatch}/>
+                ))}
 
-                <BoardItemCreator
-                    users={users}
-                    userAvatar={userAvatar}
-                    setProgress={null}
-                    statusNumber={2}
-                    status={status} inProgress={done}/>
             </div>
-        </>
+        </div>
     );
 };
 

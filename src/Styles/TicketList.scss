@@ -15,12 +15,14 @@
       border: 1px solid black ;
       padding: 20px 30px;
       border-radius: 15px;
+      min-height: 100px;
       &:hover{
         background-color: rgb(253 238 238 / 50%);
         color: teal;
       }
       .col-xs-3 {
         flex: 0 33.3333333%;
+        text-align: center;
 
       }
       .col-xs-6 {

@@ -4,14 +4,18 @@ import Board from "./Components/Board/Board";
 import "./Styles/App.scss"
 
 interface Props {
+    dispatch:any,
+    todoState:any,
+    userState:any,
+    checkProgressStatus:any,
+    statusOfProgress:any
 }
 
-const App: React.FC<Props> = ({}) => {
-
+const App: React.FC<Props> = ({dispatch , statusOfProgress,checkProgressStatus, todoState ,userState }) => {
     return (
         <div className="appContainer">
-            <TicketList/>
-            <Board/>
+            <TicketList dispatch={dispatch} todoState={todoState} userState={userState} />
+            <Board checkProgressStatus={checkProgressStatus} statusOfProgress={statusOfProgress} dispatch={dispatch} todoState={todoState} userState={userState}/>
         </div>
     );
 };

@@ -30,7 +30,7 @@ export const userReducer = (state = initialState, action: UserAction): UserState
         case UserActionType.SET_USER_AVATAR : {
             return {
                 ...state,
-                userAvatar: [...state.userAvatar, action.payload]
+                userAvatar: action.payload
             }
         }
         case UserActionType.FETCH_USERS_ERROR : {

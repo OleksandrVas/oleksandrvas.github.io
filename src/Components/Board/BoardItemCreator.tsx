@@ -1,31 +1,35 @@
 import React from 'react';
 import BoardItem from "./BoardItem";
 
-// @ts-ignore
-import cl from "./Board.module.css"
-
 
 interface Props {
-    users: any,
-    setProgress:any
+    userState: any,
+    setProgress: any
     status: any,
-    inProgress: any
-    userAvatar:any,
-    statusNumber:number
+    inProgress: any,
+    dispatch: any
 }
 
-const BoardItemCreator: React.FC<Props> = ({ users, userAvatar,inProgress, status,statusNumber,setProgress}) => {
+const BoardItemCreator: React.FC<Props> = ({
+                                               userState,
+                                               dispatch,
+                                               inProgress,
+                                               status,
+                                               setProgress
+                                           }) => {
+
     return (
-        <div className={cl.boardItemContainer}>
-            <h3>{status[statusNumber]}</h3>
+        <div className="boardItemCreator">
+            <h3 className="boardItemStatus">{status}</h3>
             {inProgress.length != 0 ? inProgress.map((item: any) => (
-                <BoardItem name={users[item.id - 1].name}
-                           userAvatar={userAvatar}
-                           setProgress = {setProgress}
+                <BoardItem name={userState.users[item.id - 1].name}
+                           userAvatar={userState.userAvatar}
+                           dispatch={dispatch}
+                           setProgress={setProgress}
                            key={item.id}
                            text={item.title}
                            id={item.id}/>
-            )) : <div>Empty now</div> }
+            )) : <div>Nice!</div>}
         </div>
     );
 };

@@ -1,9 +1,6 @@
 import React from 'react';
-// @ts-ignore
-import cl from "./Board.module.css"
 import {Avatar} from "@mui/material";
 import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
-import {useDispatch} from "react-redux";
 
 interface Props {
     text: string,
@@ -11,6 +8,7 @@ interface Props {
     userAvatar: any,
     setProgress: any,
     name: string,
+    dispatch:any
 }
 
 const BoardItem: React.FC<Props> = ({
@@ -18,28 +16,28 @@ const BoardItem: React.FC<Props> = ({
                                         userAvatar,
                                         id,
                                         name = "User",
-                                        setProgress
+                                        setProgress,
+                                        dispatch
                                     }) => {
 
 
-    const dispatch = useDispatch()
 
-    if (userAvatar.length === 0) {
+    if (userAvatar.length <1) {
         return <div>Wait</div>
     }
     return (
-        <div onClick={() => dispatch<any>(setProgress({id: id, setTicket: {id: id, title: text}}))}
-             className={cl.boardItem}>
-            <div className={cl.user}>
+        <div onClick={() => dispatch(setProgress({id: id, setTicket: {id: id, title: text}}))}
+             className="boardItem">
+            <div className="boardItemAvatar" >
                 <Avatar sx={{
-                    bgcolor: userAvatar[id - 1].color,
+                    bgcolor: (userAvatar[id - 1].color),
                     padding: "25px"
                 }}>
                     {getLetterOfNameAndSecondName(name)}
                 </Avatar>
             </div>
 
-            <div className={cl.title}>{text}</div>
+            <div className="boardItemText" >{text}</div>
         </div>
     );
 };
