@@ -20,12 +20,12 @@ interface FetchTodoErrorAction {
     payload: string,
 }
 
-interface SetInProgress {
+interface SetInProgressAction {
     type: TodoActionTypes.SET_IN_PROGRESS,
     payload: any
 }
 
-interface SetDone {
+interface SetDoneAction {
     type: TodoActionTypes.SET_DONE,
     payload: any
 }
@@ -44,5 +44,5 @@ export type TodoAction =
     FetchTodoAction |
     FetchTodoSuccessAction |
     FetchTodoErrorAction |
-    SetInProgress |
-    SetDone
+    SetInProgressAction |
+    SetDoneAction

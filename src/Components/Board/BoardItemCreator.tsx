@@ -5,10 +5,10 @@ import BoardItem from "./BoardItem";
 interface Props {
     userState: any,
     setProgress: any
-    status: any,
+    status: string,
     inProgress: any,
     dispatch: any,
-    isProgress: any,
+    isProgress: boolean,
     getLetterOfNameAndSecondName:any,
 }
 
@@ -27,14 +27,14 @@ const BoardItemCreator: React.FC<Props> = ({
             {inProgress.length != 0 ? inProgress.map((item: any) => (
                 <BoardItem name={userState.users[item.id - 1].name}
                            userAvatar={userState.userAvatar}
-                           setProgress={isProgress === true  ?
+                           setProgress={isProgress  ?
                                () => dispatch(setProgress({id: item.id, setTicket: {id: item.id, title: item.title}}))
                                : null }
                            key={item.id}
                            text={item.title}
                            getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                            id={item.id}/>
-            )) : <div>Nice!</div>}
+            )) : "Just Do it "}
         </div>
     );
 };

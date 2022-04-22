@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
 import App from "../App";
 import {useDispatch} from "react-redux";
-import {fetchTodos} from "../store/action-creators/todo";
 import {fetchUsers, setUserAvatar} from "../store/reducers/userReducer";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {color} from "./getColor";
 import {checkProgressStatus, statusOfProgress} from "./checkProgressStatus";
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import ErrorComponent from "./ErrorComponent/ErrorComponent";
 import {getLetterOfNameAndSecondName} from "./getLetterOfNameAndSecondName";
+import {fetchTodos} from "../store/reducers/todoReducer";
+import Preloader from "./UI/Preloader";
 
 
 const AppContainer = ({}) => {
@@ -33,10 +34,12 @@ const AppContainer = ({}) => {
 
 
     if (userState.userAvatar.length < colorForAvatar.length) {
-        return <div>Loading</div>
-    } else if (todoState.loading) {
-        return <div>Loading</div>
+        return <Preloader/>
     }
+    if (todoState.loading) {
+        return <Preloader/>
+    }
+
     return (
         <>
             <Routes>

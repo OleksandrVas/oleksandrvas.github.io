@@ -4,7 +4,7 @@ import Board from "./Components/Board/Board";
 import "./Styles/App.scss"
 
 interface Props {
-    dispatch: any,
+    dispatch:any,
     todoState: any,
     userState: any,
     checkProgressStatus: any,

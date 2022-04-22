@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../Styles/TicketList.scss"
 import {mapTicketList} from "./mapTicketWithProgress";
+import Preloader from "../UI/Preloader";
 
 interface Props {
     dispatch: any,
@@ -23,13 +24,13 @@ const TicketList: React.FC<Props> = ({
 
 
     if (userState.loadingUsers) {
-        return <div>Wait</div>
+        return <Preloader/>
     }
     return (
         <div className="ticketListContainer">
             <h1 className="ticketTitle"> Ticket List </h1>
             <div className="ticketListItems">
-                {todoState.status.map((status: any, index: any) => (
+                {todoState.status.map((status: any, index: number) => (
                     mapTicketList(
                         statusOfProgress(status, todoState),
                         status,

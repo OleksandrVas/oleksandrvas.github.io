@@ -13,25 +13,24 @@ export enum UserActionType {
     SET_USER_AVATAR = "SET_USER_AVATAR",
 }
 
-interface FetchUser {
+interface FetchUserAction {
     type: UserActionType.FETCH_USERS
 }
 
-interface FetchUserSuccess {
+interface FetchUserSuccessAction {
     type: UserActionType.FETCH_USERS_SUCCESS,
     payload: []
 }
 
-interface FetchUserError {
+interface FetchUserErrorAction {
     type: UserActionType.FETCH_USERS_ERROR,
     payload: string
 }
 
-interface SetUserAvatar {
+interface SetUserAvatarAction {
     type: UserActionType.SET_USER_AVATAR,
-    payload: any
+    payload: any[]
 }
 
 
-
-export type UserAction = FetchUser | FetchUserError | FetchUserSuccess | SetUserAvatar
+export type UserAction = FetchUserAction | FetchUserErrorAction | FetchUserSuccessAction | SetUserAvatarAction

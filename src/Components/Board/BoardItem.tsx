@@ -2,26 +2,27 @@ import React from 'react';
 import {Avatar} from "@mui/material";
 
 interface Props {
-    text: any,
-    id: any,
+    text: string,
+    id: number,
     userAvatar: any,
     setProgress: any,
-    name: any,
-    getLetterOfNameAndSecondName:any,
+    name: string,
+    getLetterOfNameAndSecondName: any,
 
 }
 
 const BoardItem: React.FC<Props> = ({
-                                        text ,
+                                        text,
                                         userAvatar,
                                         id,
-                                        name ,
+                                        name,
                                         setProgress,
                                         getLetterOfNameAndSecondName,
                                     }) => {
-    if (userAvatar.length < 1) {
-        return <div>Wait</div>
-    }
+    // if (userAvatar.length < 1) {
+    //     return <div>Wait</div>
+    // }
+    console.log(text.slice(0, 20) + "...")
     return (
 
         <div onClick={setProgress}
@@ -34,7 +35,7 @@ const BoardItem: React.FC<Props> = ({
                     {getLetterOfNameAndSecondName(name)}
                 </Avatar>
             </div>
-            <div className="boardItemText">{text}</div>
+            <div className="boardItemText">{text.length >= 20 ? text.slice(0, 30) + "..." : text}</div>
         </div>
     );
 };

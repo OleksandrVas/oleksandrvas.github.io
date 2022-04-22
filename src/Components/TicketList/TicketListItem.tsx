@@ -10,7 +10,7 @@ interface Props {
     inProgress: any
     userAvatar: any,
     progress: any,
-    users: any,
+    users: any[],
     id: number,
     dispatch: any,
     getLetterOfNameAndSecondName: any,
@@ -29,10 +29,7 @@ const TicketListItem: React.FC<Props> = ({
                                              getLetterOfNameAndSecondName,
                                          }) => {
 
-
-    if (userAvatar.length <= 1) {
-        return <div>wait</div>
-    }
+    //
     return (
         <div className="listItem">
             <div className="col-xs-3">
