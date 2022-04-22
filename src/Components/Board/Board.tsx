@@ -9,9 +9,10 @@ interface Props {
     userState: any,
     statusOfProgress: any,
     checkProgressStatus: any,
+    getLetterOfNameAndSecondName:any,
 }
 
-const Board: React.FC<Props> = ({dispatch, statusOfProgress, todoState, checkProgressStatus, userState}) => {
+const Board: React.FC<Props> = ({dispatch,getLetterOfNameAndSecondName, statusOfProgress, todoState, checkProgressStatus, userState}) => {
     if (userState.loadingUsers) {
         return <div>Wait</div>
     }
@@ -21,6 +22,7 @@ const Board: React.FC<Props> = ({dispatch, statusOfProgress, todoState, checkPro
             <div className="boardItemContainer">
                 {todoState.status.map((status: any, index: any) => (
                     <BoardItemCreator userState={userState}
+                                      getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                                       isProgress={index  != 2 }
                                       key={Math.random()}
                                       setProgress={checkProgressStatus(status)}

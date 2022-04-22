@@ -40,4 +40,9 @@ export interface todoState {
     status: any[]
 }
 
-export type TodoAction = FetchTodoAction | FetchTodoSuccessAction | FetchTodoErrorAction | SetInProgress | SetDone
+export type TodoAction =
+    FetchTodoAction |
+    FetchTodoSuccessAction |
+    FetchTodoErrorAction |
+    SetInProgress |
+    SetDone

@@ -8,7 +8,8 @@ interface Props {
     status: any,
     inProgress: any,
     dispatch: any,
-    isProgress: any
+    isProgress: any,
+    getLetterOfNameAndSecondName:any,
 }
 
 const BoardItemCreator: React.FC<Props> = ({
@@ -17,7 +18,8 @@ const BoardItemCreator: React.FC<Props> = ({
                                                dispatch,
                                                inProgress,
                                                status,
-                                               setProgress
+                                               setProgress,
+                                               getLetterOfNameAndSecondName,
                                            }) => {
     return (
         <div className="boardItemCreator">
@@ -30,6 +32,7 @@ const BoardItemCreator: React.FC<Props> = ({
                                : null }
                            key={item.id}
                            text={item.title}
+                           getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                            id={item.id}/>
             )) : <div>Nice!</div>}
         </div>

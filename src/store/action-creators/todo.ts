@@ -1,13 +1,14 @@
 import {Dispatch} from "redux";
 import {TodoAction, TodoActionTypes} from "../../types/todo";
 import axios from "axios";
+import {todoIpi} from "../../Api/API";
 
 
 export const fetchTodos = () => {
     return async (dispatch: Dispatch<TodoAction>) => {
         try {
             dispatch({type: TodoActionTypes.FETCH_TODOS})
-            const response = await axios.get("https://jsonplaceholder.typicode.com/todos?_page=1")
+            const response = await axios.get(todoIpi)
             dispatch({
                 type: TodoActionTypes.FETCH_TODOS_SUCCESS,
                 payload: response.data

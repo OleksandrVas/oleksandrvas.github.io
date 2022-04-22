@@ -8,9 +8,11 @@ export const mapTicketList = (todoProgress: any,
                               inProgress: any,
                               userAvatar: any,
                               progress: any,
-                              dispatch: any
+                              dispatch: any,
+                              getLetterOfNameAndSecondName:any,
 ) => {
     return todoProgress.map((item: any) => <TicketListItem key={item.id}
+                                                           getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                                                            id={item.id}
                                                            dispatch={dispatch}
                                                            progress={progress}

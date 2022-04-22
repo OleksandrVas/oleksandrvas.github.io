@@ -39,6 +39,8 @@ export const todoReducer = (state = initialState, action: TodoAction): todoState
                 done: [...state.done, action.payload.setTicket]
             }
         }
+
+
         default : {
             return state
         }

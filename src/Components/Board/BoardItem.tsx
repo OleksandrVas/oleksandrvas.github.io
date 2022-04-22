@@ -1,6 +1,5 @@
 import React from 'react';
 import {Avatar} from "@mui/material";
-import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
 
 interface Props {
     text: any,
@@ -8,6 +7,7 @@ interface Props {
     userAvatar: any,
     setProgress: any,
     name: any,
+    getLetterOfNameAndSecondName:any,
 
 }
 
@@ -17,6 +17,7 @@ const BoardItem: React.FC<Props> = ({
                                         id,
                                         name ,
                                         setProgress,
+                                        getLetterOfNameAndSecondName,
                                     }) => {
     if (userAvatar.length < 1) {
         return <div>Wait</div>

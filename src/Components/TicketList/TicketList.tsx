@@ -8,10 +8,18 @@ interface Props {
     userState: any,
     statusOfProgress: any,
     checkProgressStatus: any,
+    getLetterOfNameAndSecondName: any
 }
 
 
-const TicketList: React.FC<Props> = ({dispatch, statusOfProgress, checkProgressStatus, todoState, userState}) => {
+const TicketList: React.FC<Props> = ({
+                                         dispatch,
+                                         getLetterOfNameAndSecondName,
+                                         statusOfProgress,
+                                         checkProgressStatus,
+                                         todoState,
+                                         userState
+                                     }) => {
 
 
     if (userState.loadingUsers) {
@@ -29,7 +37,8 @@ const TicketList: React.FC<Props> = ({dispatch, statusOfProgress, checkProgressS
                         index !== 2,
                         userState.userAvatar,
                         checkProgressStatus(status),
-                        dispatch
+                        dispatch,
+                        getLetterOfNameAndSecondName,
                     )
                 ))}
 

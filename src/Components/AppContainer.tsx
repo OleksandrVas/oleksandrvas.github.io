@@ -6,12 +6,13 @@ import {fetchUsers, setUserAvatar} from "../store/reducers/userReducer";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {color} from "./getColor";
 import {checkProgressStatus, statusOfProgress} from "./checkProgressStatus";
+import {Link, Route, Routes} from "react-router-dom";
+import ErrorComponent from "./ErrorComponent/ErrorComponent";
+import {getLetterOfNameAndSecondName} from "./getLetterOfNameAndSecondName";
 
 
-const AppContainer: React.FC = ({}) => {
+const AppContainer = ({}) => {
     const dispatch = useDispatch()
-
-
     const todoState = useTypedSelector(state => state.todo)
     const userState = useTypedSelector(state => state.users)
 
@@ -38,8 +39,16 @@ const AppContainer: React.FC = ({}) => {
     }
     return (
         <>
-            <App dispatch={dispatch} statusOfProgress={statusOfProgress} checkProgressStatus={checkProgressStatus}
-                 todoState={todoState} userState={userState}/>
+            <Routes>
+                <Route path='/' element={
+                    <App dispatch={dispatch} statusOfProgress={statusOfProgress}
+                         getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
+                         checkProgressStatus={checkProgressStatus}
+                         todoState={todoState} userState={userState}/>
+                }/>
+                <Route path="*" element={<ErrorComponent/>}/>
+            </Routes>
+
         </>
 
     );

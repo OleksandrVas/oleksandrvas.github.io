@@ -2,7 +2,6 @@ import {Avatar} from '@mui/material';
 import React from 'react';
 import "../../Styles/TicketList.scss"
 import Button from "../UI/Button";
-import {getLetterOfNameAndSecondName} from "../getLetterOfNameAndSecondName";
 
 
 interface Props {
@@ -13,7 +12,8 @@ interface Props {
     progress: any,
     users: any,
     id: number,
-    dispatch: any
+    dispatch: any,
+    getLetterOfNameAndSecondName: any,
 }
 
 
@@ -26,13 +26,13 @@ const TicketListItem: React.FC<Props> = ({
                                              id,
                                              inProgress,
                                              dispatch,
+                                             getLetterOfNameAndSecondName,
                                          }) => {
 
 
     if (userAvatar.length <= 1) {
         return <div>wait</div>
     }
-
     return (
         <div className="listItem">
             <div className="col-xs-3">
@@ -46,7 +46,7 @@ const TicketListItem: React.FC<Props> = ({
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">
                 <Button children={status}
-                        onHandleClick={inProgress === true  ?
+                        onHandleClick={inProgress === true ?
                             () => dispatch(progress({id: id, setTicket: {id: id, title: text}}))
                             : null
                         }/>

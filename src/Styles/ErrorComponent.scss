@@ -1,0 +1,25 @@
+.errorComponentContainer {
+  height: 30em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-right: 20px;
+  }
+
+  button {
+    background-color: #fff;
+    border: none;
+    border-radius: 15px ;
+    cursor: pointer;
+    padding: 10px;
+    &:hover{
+      background-color:  rgb(253 238 238 / 50%);
+      color: teal;
+      border-radius: 15px ;
+      transition: 0.2s;
+    }
+  }
+
+}
