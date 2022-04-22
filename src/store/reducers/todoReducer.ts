@@ -3,7 +3,9 @@ import {Dispatch} from "redux";
 import axios from "axios";
 import {todoIpi} from "../../Api/API";
 
-
+const filterArray = (array: any, action: any) => {
+    return array.filter((item: any) => item.id !== action)
+}
 const initialState: todoState = {
     todo: [],
     inProgress: [],
@@ -31,14 +33,14 @@ export const todoReducer = (state = initialState, action: TodoAction): todoState
         case TodoActionTypes.SET_IN_PROGRESS : {
             return {
                 ...state,
-                todo: state.todo.filter(item => item.id !== action.payload.id),
+                todo: filterArray(state.todo, action.payload.id),
                 inProgress: [...state.inProgress, action.payload.setTicket]
             }
         }
         case TodoActionTypes.SET_DONE : {
             return {
                 ...state,
-                inProgress: state.inProgress.filter(item => item.id !== action.payload.id),
+                inProgress: filterArray(state.inProgress, action.payload.id),
                 done: [...state.done, action.payload.setTicket]
             }
         }

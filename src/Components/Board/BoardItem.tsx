@@ -19,10 +19,7 @@ const BoardItem: React.FC<Props> = ({
                                         setProgress,
                                         getLetterOfNameAndSecondName,
                                     }) => {
-    // if (userAvatar.length < 1) {
-    //     return <div>Wait</div>
-    // }
-    console.log(text.slice(0, 20) + "...")
+
     return (
 
         <div onClick={setProgress}

@@ -12,7 +12,7 @@ import {fetchTodos} from "../store/reducers/todoReducer";
 import Preloader from "./UI/Preloader";
 
 
-const AppContainer = ({}) => {
+const AppContainer = () => {
     const dispatch = useDispatch()
     const todoState = useTypedSelector(state => state.todo)
     const userState = useTypedSelector(state => state.users)
