@@ -21,7 +21,6 @@ const TicketList: React.FC<Props> = ({
                                          userState
                                      }) => {
 
-
     return (
         <div className="ticketListContainer">
             <h1 className="ticketTitle"> Ticket List </h1>

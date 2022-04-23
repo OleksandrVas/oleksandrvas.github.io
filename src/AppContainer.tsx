@@ -3,16 +3,17 @@ import App from "./App";
 import {useDispatch} from "react-redux";
 import {fetchUsers, setUserAvatar} from "./store/reducers/userReducer";
 import {useTypedSelector} from "./hooks/useTypedSelector";
-import {color} from "./Components/getColor";
-import {checkProgressStatus, statusOfProgress} from "./Components/checkProgressStatus";
+import {color} from "./utils/getColor";
+import {checkProgressStatus, statusOfProgress} from "./utils/checkProgressStatus";
 import {Route, Routes} from "react-router-dom";
 import ErrorComponent from "./Components/ErrorComponent/ErrorComponent";
-import {getLetterOfNameAndSecondName} from "./Components/getLetterOfNameAndSecondName";
+import {getLetterOfNameAndSecondName} from "./utils/getLetterOfNameAndSecondName";
 import {fetchTodos} from "./store/reducers/todoReducer";
 import Preloader from "./Components/UI/Preloader";
 
 
 const AppContainer = () => {
+
     const dispatch = useDispatch()
 
     const todoState = useTypedSelector(state => state.todo)

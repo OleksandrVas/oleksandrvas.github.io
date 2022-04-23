@@ -1,6 +1,6 @@
 import {Avatar} from '@mui/material';
 import React from 'react';
-import "../../Styles/TicketList.scss"
+import UserAvatar from "../UI/UserAvatar";
 
 
 interface Props {
@@ -26,12 +26,10 @@ const TicketListItem: React.FC<Props> = ({
     return (
         <div className="listItem" onClick={setProgress}>
             <div className="col-xs-3">
-                <Avatar sx={{
-                    bgcolor: (userAvatar[id - 1].color || "black"),
-                    padding: "25px"
-                }}>
-                    {getLetterOfNameAndSecondName(users[id - 1].name)}
-                </Avatar>
+                <UserAvatar userAvatar={userAvatar}
+                            id={id}
+                            getFirsLetterOfUser={getLetterOfNameAndSecondName}
+                            users={users}/>
             </div>
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">

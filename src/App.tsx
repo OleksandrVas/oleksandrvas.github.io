@@ -24,18 +24,20 @@ const App: React.FC<Props> = ({
 
     return (
         <div className="appContainer">
-            <TicketList getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
-                        checkProgressStatus={checkProgressStatus}
-                        setProgressInItem={setProgressInItem}
-                        statusOfProgress={statusOfProgress}
-                        todoState={todoState}
-                        userState={userState}/>
-            <Board getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
-                   checkProgressStatus={checkProgressStatus}
-                   statusOfProgress={statusOfProgress}
-                   setProgressInItem={setProgressInItem}
-                   todoState={todoState}
-                   userState={userState}/>
+            <TicketList
+                getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
+                checkProgressStatus={checkProgressStatus}
+                setProgressInItem={setProgressInItem}
+                statusOfProgress={statusOfProgress}
+                todoState={todoState}
+                userState={userState}/>
+            <Board
+                getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
+                checkProgressStatus={checkProgressStatus}
+                statusOfProgress={statusOfProgress}
+                setProgressInItem={setProgressInItem}
+                todoState={todoState}
+                userState={userState}/>
         </div>
     );
 };

@@ -1,21 +1,21 @@
 import React from 'react';
 import {Avatar} from "@mui/material";
+import UserAvatar from "../UI/UserAvatar";
 
 interface Props {
     text: string,
     id: number,
     userAvatar: any,
     setProgress: any,
-    name: string,
     getLetterOfNameAndSecondName: any,
-
+    users: any,
 }
 
 const BoardItem: React.FC<Props> = ({
+                                        users,
                                         text,
                                         userAvatar,
                                         id,
-                                        name,
                                         setProgress,
                                         getLetterOfNameAndSecondName,
                                     }) => {
@@ -25,12 +25,11 @@ const BoardItem: React.FC<Props> = ({
         <div onClick={setProgress}
              className="boardItem">
             <div className="boardItemAvatar">
-                <Avatar sx={{
-                    bgcolor: (userAvatar[id - 1].color),
-                    padding: "25px"
-                }}>
-                    {getLetterOfNameAndSecondName(name)}
-                </Avatar>
+                <UserAvatar userAvatar={userAvatar}
+                            id={id}
+                            getFirsLetterOfUser={getLetterOfNameAndSecondName}
+                            users={users}
+                />
             </div>
             <div className="boardItemText">{text.length >= 20 ? text.slice(0, 30) + "..." : text}</div>
         </div>

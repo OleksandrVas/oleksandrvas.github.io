@@ -25,14 +25,15 @@ const BoardItemCreator: React.FC<Props> = ({
         <div className="boardItemCreator">
             <h3 className="boardItemStatus">{status}</h3>
             {inProgress.length !== 0 ? inProgress.map((item: any) => (
-                <BoardItem name={userState.users[item.id - 1].name}
-                           userAvatar={userState.userAvatar}
-                           setProgress={setProgressInItem(isProgress, setProgress, item.id, item.title)}
-                           key={item.id}
-                           text={item.title}
-                           getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
-                           id={item.id}/>
-            )) : "Just Do It "}
+                <BoardItem
+                    userAvatar={userState.userAvatar}
+                    users={userState.users}
+                    setProgress={setProgressInItem(isProgress, setProgress, item.id, item.title)}
+                    key={item.id}
+                    text={item.title}
+                    getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
+                    id={item.id}/>
+            )) : "Clear"}
         </div>
     );
 };
