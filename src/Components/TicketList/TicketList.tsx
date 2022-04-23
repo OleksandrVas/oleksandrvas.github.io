@@ -1,20 +1,19 @@
 import React from 'react';
 import "../../Styles/TicketList.scss"
 import {mapTicketList} from "./mapTicketWithProgress";
-import Preloader from "../UI/Preloader";
 
 interface Props {
-    dispatch: any,
     todoState: any,
     userState: any,
     statusOfProgress: any,
     checkProgressStatus: any,
+    setProgressInItem: any,
     getLetterOfNameAndSecondName: any
 }
 
 
 const TicketList: React.FC<Props> = ({
-                                         dispatch,
+                                         setProgressInItem,
                                          getLetterOfNameAndSecondName,
                                          statusOfProgress,
                                          checkProgressStatus,
@@ -23,14 +22,11 @@ const TicketList: React.FC<Props> = ({
                                      }) => {
 
 
-    if (userState.loadingUsers) {
-        return <Preloader/>
-    }
     return (
         <div className="ticketListContainer">
             <h1 className="ticketTitle"> Ticket List </h1>
             <div className="ticketListItems">
-                {todoState.status.map((status: any, index: number) => (
+                {todoState.status.map((status: string, index: number) => (
                     mapTicketList(
                         statusOfProgress(status, todoState),
                         status,
@@ -38,8 +34,8 @@ const TicketList: React.FC<Props> = ({
                         index !== 2,
                         userState.userAvatar,
                         checkProgressStatus(status),
-                        dispatch,
                         getLetterOfNameAndSecondName,
+                        setProgressInItem
                     )
                 ))}
 

@@ -30,6 +30,12 @@ export const todoReducer = (state = initialState, action: TodoAction): todoState
                 todo: action.payload
             }
         }
+        case TodoActionTypes.FETCH_TODOS_ERROR : {
+            return {
+                ...state,
+                error: action.payload
+            }
+        }
         case TodoActionTypes.SET_IN_PROGRESS : {
             return {
                 ...state,

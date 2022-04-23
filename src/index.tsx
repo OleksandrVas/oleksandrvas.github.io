@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from "react-redux";
 import {store} from "./store";
-import AppContainer from "./Components/AppContainer";
+import AppContainer from "./AppContainer";
 import "./Styles/Index.scss"
 import {BrowserRouter} from "react-router-dom";
 

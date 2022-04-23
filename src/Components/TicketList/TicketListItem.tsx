@@ -1,18 +1,15 @@
 import {Avatar} from '@mui/material';
 import React from 'react';
 import "../../Styles/TicketList.scss"
-import Button from "../UI/Button";
 
 
 interface Props {
     text: string,
     status: string,
-    inProgress: any
     userAvatar: any,
-    progress: any,
+    setProgress: any,
     users: any[],
     id: number,
-    dispatch: any,
     getLetterOfNameAndSecondName: any,
 }
 
@@ -21,17 +18,13 @@ const TicketListItem: React.FC<Props> = ({
                                              userAvatar,
                                              text,
                                              status,
-                                             progress,
+                                             setProgress,
                                              users,
                                              id,
-                                             inProgress,
-                                             dispatch,
                                              getLetterOfNameAndSecondName,
                                          }) => {
-
-    //
     return (
-        <div className="listItem">
+        <div className="listItem" onClick={setProgress}>
             <div className="col-xs-3">
                 <Avatar sx={{
                     bgcolor: (userAvatar[id - 1].color || "black"),
@@ -42,11 +35,7 @@ const TicketListItem: React.FC<Props> = ({
             </div>
             <div className="col-xs-6">{text}</div>
             <div className="col-xs-3">
-                <Button children={status}
-                        onHandleClick={inProgress === true ?
-                            () => dispatch(progress({id: id, setTicket: {id: id, title: text}}))
-                            : null
-                        }/>
+                {status}
             </div>
         </div>
     );

@@ -4,34 +4,36 @@ import Board from "./Components/Board/Board";
 import "./Styles/App.scss"
 
 interface Props {
-    dispatch:any,
     todoState: any,
     userState: any,
     checkProgressStatus: any,
+    setProgressInItem: any,
     statusOfProgress: any,
     getLetterOfNameAndSecondName: any,
 }
 
 const App: React.FC<Props> = ({
-                                  dispatch,
                                   getLetterOfNameAndSecondName,
                                   statusOfProgress,
+                                  setProgressInItem,
                                   checkProgressStatus,
                                   todoState,
                                   userState,
                               }) => {
+
+
     return (
         <div className="appContainer">
             <TicketList getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
-                        dispatch={dispatch}
                         checkProgressStatus={checkProgressStatus}
+                        setProgressInItem={setProgressInItem}
                         statusOfProgress={statusOfProgress}
                         todoState={todoState}
                         userState={userState}/>
             <Board getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                    checkProgressStatus={checkProgressStatus}
                    statusOfProgress={statusOfProgress}
-                   dispatch={dispatch}
+                   setProgressInItem={setProgressInItem}
                    todoState={todoState}
                    userState={userState}/>
         </div>
