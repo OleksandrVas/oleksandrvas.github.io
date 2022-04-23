@@ -18,8 +18,7 @@ export const checkProgressStatus = (status: any) => {
 }
 
 
-
- export  const statusOfProgress = (status: any , todoState : any) => {
+export const statusOfProgress = (status: any, todoState: any) => {
     switch (status) {
         case "To do" : {
             return todoState.todo

@@ -1,3 +1,16 @@
+import axios from "axios";
 
-export const userApi = "https://jsonplaceholder.typicode.com/users"
-export const todoIpi = "https://jsonplaceholder.typicode.com/todos?_page=1"
+const instance = axios.create({
+    baseURL: "https://jsonplaceholder.typicode.com",
+})
+
+export const userApi = {
+    getUser() {
+        return instance.get("/users")
+    }
+}
+export const todoIpi = {
+    getTodo() {
+        return instance.get("/todos?_page=1")
+    }
+}

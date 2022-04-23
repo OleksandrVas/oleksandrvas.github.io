@@ -1,6 +1,5 @@
 import {UserAction, UserActionType, UserState} from "../../types/user";
 import {Dispatch} from "react";
-import axios from "axios";
 import {userApi} from "../../Api/API";
 
 
@@ -50,12 +49,11 @@ export const userReducer = (state = initialState, action: UserAction): UserState
 export const setUserAvatar = (payload: any) => ({type: UserActionType.SET_USER_AVATAR, payload})
 
 
-
 export const fetchUsers = () =>
     async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionType.FETCH_USERS})
-            const response = await axios.get(userApi)
+            const response = await userApi.getUser()
                 .then(resp => resp.data)
             dispatch(({
                 type: UserActionType.FETCH_USERS_SUCCESS, payload: response

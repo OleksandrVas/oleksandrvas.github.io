@@ -1,6 +1,5 @@
 import {TodoAction, TodoActionTypes, todoState} from "../../types/todo";
 import {Dispatch} from "redux";
-import axios from "axios";
 import {todoIpi} from "../../Api/API";
 
 const filterArray = (array: any, action: any) => {
@@ -66,7 +65,7 @@ export const fetchTodos = () => {
     return async (dispatch: Dispatch<TodoAction>) => {
         try {
             dispatch({type: TodoActionTypes.FETCH_TODOS})
-            const response = await axios.get(todoIpi)
+            const response = await todoIpi.getTodo()
             dispatch({
                 type: TodoActionTypes.FETCH_TODOS_SUCCESS,
                 payload: response.data

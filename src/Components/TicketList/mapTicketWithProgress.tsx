@@ -12,7 +12,7 @@ export const mapTicketList = (todoProgress: any,
                               setProgressInItem: any,
 ) => {
     return todoProgress.length !== 0 ?
-        todoProgress.map((item: any  ) => <TicketListItem key={item.id}
+        todoProgress.map((item: any) => <TicketListItem key={item.id}
                                                         getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                                                         id={item.id}
                                                         setProgress={setProgressInItem(isInProcess, progress, item.id, item.title)}
