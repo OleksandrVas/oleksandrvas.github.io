@@ -33,7 +33,7 @@ const BoardItemCreator: React.FC<Props> = ({
                     text={item.title}
                     getLetterOfNameAndSecondName={getLetterOfNameAndSecondName}
                     id={item.id}/>
-            )) : "it's empty"}
+            )) : "it's empty "}
         </div>
     );
 };
