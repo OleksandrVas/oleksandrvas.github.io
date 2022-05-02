@@ -2,8 +2,11 @@ import { TodoAction, TodoActionTypes, todoState } from "../../types/todo";
 import { Dispatch } from "redux";
 import { todoIpi } from "../../Api/API";
 
-const filterArray = (array: any, action: any) => {
-  return array.filter((item: any) => item.id !== action);
+const filterArray = (
+  array: Array<{ id: number; title: string }>,
+  action: number
+) => {
+  return array.filter(({ id }) => id !== action);
 };
 const initialState: todoState = {
   todo: [],

@@ -39,7 +39,6 @@ export const userReducer = (
         error: action.payload,
       };
     }
-
     default: {
       return state;
     }
