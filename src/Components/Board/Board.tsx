@@ -6,24 +6,20 @@ import {
   checkProgressStatus,
   statusOfProgress,
 } from "../../utils/checkProgressStatus";
+import { useDispatch } from "react-redux";
 
-interface Props {
-  setProgressInItem: any;
-}
-
-const Board: React.FC<Props> = ({ setProgressInItem }) => {
+const Board: React.FC = () => {
   const todoState = useTypedSelector((state) => state.todo);
-  const user = useTypedSelector((state) => state.users);
+  const dispatch = useDispatch();
   return (
     <div className="boardContainer">
       <h1 className="boardTitle">Board</h1>
       <div className="boardItemContainer">
-        {todoState.status.map((status: any, index: number) => (
+        {todoState.status.map((status: string, index: number) => (
           <BoardItemCreator
             isProgress={index !== 2}
             key={Math.random()}
-            user={user}
-            setProgressInItem={setProgressInItem}
+            dispatch={dispatch}
             setProgress={checkProgressStatus(status)}
             inProgress={statusOfProgress(status, todoState)}
             status={status}

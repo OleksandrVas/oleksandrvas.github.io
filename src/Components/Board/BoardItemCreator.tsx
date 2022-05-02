@@ -1,40 +1,48 @@
 import React from "react";
 import BoardItem from "./BoardItem";
+import { setProgressInItem } from "../../utils/setProgressInItem";
+import { Dispatch } from "redux";
+import { TodoActionTypes } from "../../types/todo";
 
 interface Props {
-  user: any;
-  setProgress: any;
+  setProgress:
+    | string
+    | null
+    | undefined
+    | ((payload: { id: number; setTicket: { id: number; title: string } }) => {
+        type: TodoActionTypes;
+        payload: { id: number; setTicket: { id: number; title: string } };
+      });
   status: string;
-  inProgress: any;
-  setProgressInItem: any;
+  inProgress: string | Array<{ id: number; title: string; completed: boolean }>;
   isProgress: boolean;
+  dispatch: Dispatch;
 }
 
 const BoardItemCreator: React.FC<Props> = ({
   isProgress,
-  user,
-  setProgressInItem,
   inProgress,
   status,
   setProgress,
+  dispatch,
 }) => {
   return (
     <div className="boardItemCreator">
       <h3 className="boardItemStatus">{status}</h3>
       {inProgress.length !== 0
-        ? inProgress.map((item: any) => (
+        ? typeof inProgress !== "string" &&
+          inProgress.map(({ id, completed, title }) => (
             <BoardItem
-              userAvatar={user.userAvatar}
-              users={user.users}
               setProgress={setProgressInItem(
                 isProgress,
                 setProgress,
-                item.id,
-                item.title
+                id,
+                title,
+                dispatch
               )}
-              key={item.id}
-              text={item.title}
-              id={item.id}
+              key={id}
+              text={title}
+              id={id}
             />
           ))
         : "it's empty "}

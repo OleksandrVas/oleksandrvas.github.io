@@ -1,31 +1,31 @@
 import React from "react";
 import UserAvatar from "../UI/UserAvatar";
-import { getLetterOfNameAndSecondName } from "../../utils/getLetterOfNameAndSecondName";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { TodoActionTypes } from "../../types/todo";
+import { checkValidProgress } from "../../utils/checkValidProgress";
 
 interface Props {
   text: string;
   id: number;
-  userAvatar: any;
-  setProgress: any;
-  users: any;
+  setProgress:
+    | string
+    | null
+    | undefined
+    | ((payload: { id: number; setTicket: { id: number; title: string } }) => {
+        type: TodoActionTypes;
+        payload: { id: number; setTicket: { id: number; title: string } };
+      });
 }
 
-const BoardItem: React.FC<Props> = ({
-  users,
-  text,
-  userAvatar,
-  id,
-  setProgress,
-}) => {
+const BoardItem: React.FC<Props> = ({ text, id, setProgress }) => {
+  const { users, userAvatar } = useTypedSelector((state) => state.users);
   return (
-    <div onClick={setProgress} className="boardItem">
+    <div
+      onClick={() => checkValidProgress(id, text, setProgress)}
+      className="boardItem"
+    >
       <div className="boardItemAvatar">
-        <UserAvatar
-          userAvatar={userAvatar}
-          id={id}
-          getFirsLetterOfUser={getLetterOfNameAndSecondName}
-          users={users}
-        />
+        <UserAvatar userAvatar={userAvatar} id={id} users={users} />
       </div>
       <div className="boardItemText">
         {text.length >= 20 ? text.slice(0, 30) + "..." : text}

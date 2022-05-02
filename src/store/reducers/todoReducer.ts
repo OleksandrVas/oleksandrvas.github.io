@@ -39,31 +39,37 @@ export const todoReducer = (
       };
     }
     case TodoActionTypes.SET_IN_PROGRESS: {
-      return {
+      return <todoState>{
         ...state,
         todo: filterArray(state.todo, action.payload.id),
         inProgress: [...state.inProgress, action.payload.setTicket],
       };
     }
     case TodoActionTypes.SET_DONE: {
-      return {
+      return <todoState>{
         ...state,
         inProgress: filterArray(state.inProgress, action.payload.id),
         done: [...state.done, action.payload.setTicket],
       };
     }
-
     default: {
       return state;
     }
   }
 };
 
-export const setInProgress = (payload: any) => ({
+export const setInProgress = (payload: {
+  id: number;
+  setTicket: { id: number; title: string };
+}) => ({
   type: TodoActionTypes.SET_IN_PROGRESS,
   payload,
 });
-export const setDone = (payload: any) => ({
+
+export const setDone = (payload: {
+  id: number;
+  setTicket: { id: number; title: string };
+}) => ({
   type: TodoActionTypes.SET_DONE,
   payload,
 });

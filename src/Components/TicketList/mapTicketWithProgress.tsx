@@ -1,31 +1,42 @@
 import TicketListItem from "./TicketListItem";
 import React from "react";
+import { setProgressInItem } from "../../utils/setProgressInItem";
+import { Dispatch } from "redux";
+import { TodoActionTypes } from "../../types/todo";
 
 export const mapTicketList = (
-  todoProgress: any,
+  todoProgress:
+    | Array<{ userId: number; id: number; title: string; completed: boolean }>
+    | string,
   status: string,
-  users: any,
   isInProcess: boolean,
-  userAvatar: any,
-  progress: any,
-  setProgressInItem: any
+  progress:
+    | string
+    | ((payload: { id: number; setTicket: { id: number; title: string } }) => {
+        type: TodoActionTypes;
+        payload: { id: number; setTicket: { id: number; title: string } };
+      })
+    | null
+    | undefined,
+  dispatch: Dispatch
 ) => {
   return todoProgress.length !== 0
-    ? todoProgress.map((item: any) => (
-        <TicketListItem
-          key={item.id}
-          id={item.id}
-          setProgress={setProgressInItem(
-            isInProcess,
-            progress,
-            item.id,
-            item.title
-          )}
-          userAvatar={userAvatar}
-          users={users}
-          text={item.title}
-          status={status}
-        />
-      ))
+    ? typeof todoProgress !== "string"
+      ? todoProgress?.map(({ id, title }) => (
+          <TicketListItem
+            key={id}
+            id={id}
+            setProgress={setProgressInItem(
+              isInProcess,
+              progress,
+              id,
+              title,
+              dispatch
+            )}
+            text={title}
+            status={status}
+          />
+        ))
+      : ""
     : "";
 };

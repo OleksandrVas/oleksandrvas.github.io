@@ -6,15 +6,11 @@ import {
   statusOfProgress,
   checkProgressStatus,
 } from "../../utils/checkProgressStatus";
+import { useDispatch } from "react-redux";
 
-interface Props {
-  setProgressInItem: any;
-}
-
-const TicketList: React.FC<Props> = ({ setProgressInItem }) => {
+const TicketList: React.FC = () => {
   const todoState = useTypedSelector((state) => state.todo);
-  const { users, userAvatar } = useTypedSelector((state) => state.users);
-
+  const dispatch = useDispatch();
   return (
     <div className="ticketListContainer">
       <h1 className="ticketTitle"> Ticket List </h1>
@@ -23,11 +19,9 @@ const TicketList: React.FC<Props> = ({ setProgressInItem }) => {
           mapTicketList(
             statusOfProgress(status, todoState),
             status,
-            users,
             index !== 2,
-            userAvatar,
             checkProgressStatus(status),
-            setProgressInItem
+            dispatch
           )
         )}
       </div>

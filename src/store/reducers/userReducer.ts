@@ -46,7 +46,7 @@ export const userReducer = (
   }
 };
 
-export const setUserAvatar = (payload: any) => ({
+export const setUserAvatar = (payload: Array<{ color: string }>) => ({
   type: UserActionType.SET_USER_AVATAR,
   payload,
 });
